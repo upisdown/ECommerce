@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+    
+      
+>
+    <body>
+
+        <ui:composition template="./style/facelet.xhtml">
+            
+            <ui:define name="center">
+                
+                
+                <div class="registTitle"> <h2> Registrate con nosotros </h2>  </div>
+                <p:growl id="msgs" showDetail="true" />
+                <p:panel header="" class="">
+                
+                <div class="registForm">
+                <h:form >
+                    
+                   
+                    
+                    <h:panelGrid id ="grid" columns="3" columnClasses="alignright,aligncenter,aligncenter" cellpadding="10">
+                        
+                      
+                        <h:outputLabel value="Nombre: " for="name"/>
+                        <p:inputText id="name" value="#{registBean.name}" validatorMessage="  Nombre: No se permiten numeros en este campo" placeholder="¿Cuál es tu nombre?" required="true" label="Nombre" >
+                        <f:validateRegex pattern="[a-zA-Z]+" />
+                        </p:inputText>
+                        <p:message for="name" />
+                        
+                        
+                        <h:outputLabel value="Apellido: " for="lastname"/>
+                        <p:inputText id="lastname" value="#{registBean.lastname}" validatorMessage="    Apellido: No se permiten numeros en este campo" placeholder="¿Cuál es tu apellido?" required="true" label="Apellido" >
+                        <f:validateRegex pattern="[a-zA-Z]+" />
+                        </p:inputText>
+                        <p:message for="lastname" />                         
+
+                    
+                        <h:outputLabel value="Fecha de nacimiento: " for="dob"/>
+                        <p:calendar id="dob" value="#{registBean.dob}"  effect = "fade" placeholder="¿Cuando nacistes?" navigator="true" required="true" label="Fecha" validatorMessage="Formato Inválido dd/MM/yy" >
+                            <f:convertDateTime pattern="dd/MM/yy" />
+                        </p:calendar>
+                        <p:message for="dob" />                         
+                        
+                      
+                        <h:outputLabel value="Email: " for="email"/>
+                        <p:inputText id="email" value="#{registBean.email}" placeholder="¿Cuál es tu email?" required="true" label="Email" validatorMessage="Email Invalido." > 
+                         <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                        </p:inputText>
+                        <p:message for="email" />
+                        <!--b-->
+                     <p:commandButton value="Registrar" update="grid"  validateClient="true" style="margin-right:10px"/>
+    
+                     
+                        
+                        
+                        
+                        
+                    </h:panelGrid>
+                    
+                </h:form>
+                </div>
+                    </p:panel>
+            </ui:define>
+            
+        </ui:composition>
+
+    </body>
+</html>
