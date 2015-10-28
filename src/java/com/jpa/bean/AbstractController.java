@@ -117,12 +117,7 @@ public abstract class AbstractController<T> implements Serializable {
         persist(PersistAction.UPDATE, msg);
     }
 
-    /**
-     * Store a new item in the data layer.
-     *
-     * @param event an event from the widget that wants to save a new Entity to
-     * the data layer
-     */
+
     public void saveNew(ActionEvent event) {
         String msg = ResourceBundle.getBundle("/MyBundle").getString(itemClass.getSimpleName() + "Created");
         persist(PersistAction.CREATE, msg);
