@@ -17,7 +17,7 @@
                 
                 <div class="registTitle"> <h2> Registrate con nosotros </h2>  </div>
                 <p:growl id="msgs" showDetail="true" />
-                <p:panel header="" class="">
+                <p:panel id="display" header="" styleClass="">
                 
                 <div class="registForm">
                 <h:form >
@@ -27,35 +27,39 @@
                     <h:panelGrid id ="grid" columns="3" columnClasses="alignright,aligncenter,aligncenter" cellpadding="10">
                         
                       
-                        <h:outputLabel value="Nombre: " for="name"/>
-                        <p:inputText id="name" value="#{registBean.name}" validatorMessage="  Nombre: No se permiten numeros en este campo" placeholder="¿Cuál es tu nombre?" required="true" label="Nombre" >
-                        <f:validateRegex pattern="[a-zA-Z]+" />
-                        </p:inputText>
+                        <p:outputLabel value="#{myBundle.CreateUsuarioLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{usuarioController.selected.name}" title="#{myBundle.CreateUsuarioTitle_name}" required="true" placeholder="#{myBundle.CreateUsuarioNamePlaceHolder}" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_name}"  maxlength="18"/>
+
                         <p:message for="name" />
                         
                         
-                        <h:outputLabel value="Apellido: " for="lastname"/>
-                        <p:inputText id="lastname" value="#{registBean.lastname}" validatorMessage="    Apellido: No se permiten numeros en este campo" placeholder="¿Cuál es tu apellido?" required="true" label="Apellido" >
-                        <f:validateRegex pattern="[a-zA-Z]+" />
-                        </p:inputText>
+                        <p:outputLabel value="#{myBundle.CreateUsuarioLabel_lastname}" for="lastname" />
+                        <p:inputText id="lastname" value="#{usuarioController.selected.lastname}" title="#{myBundle.CreateUsuarioTitle_lastname}" required="true" placeholder="#{myBundle.CreateUsuarioLastnamePlaceHolder}" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_lastname}" maxlength="25"/>
                         <p:message for="lastname" />                         
 
                     
-                        <h:outputLabel value="Fecha de nacimiento: " for="dob"/>
-                        <p:calendar id="dob" value="#{registBean.dob}"  effect = "fade" placeholder="¿Cuando nacistes?" navigator="true" required="true" label="Fecha" validatorMessage="Formato Inválido dd/MM/yy" >
-                            <f:convertDateTime pattern="dd/MM/yy" />
-                        </p:calendar>
+                        <p:outputLabel value="#{myBundle.CreateUsuarioLabel_dob}" for="dob" />
+                        <p:calendar id="dob" pattern="MM/dd/yyyy" value="#{usuarioController.selected.dob}" title="#{myBundle.CreateUsuarioTitle_dob}" required="true" placeholder="#{myBundle.CreateUsuarioDobPlaceHolder}" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_dob}" />
                         <p:message for="dob" />                         
                         
                       
-                        <h:outputLabel value="Email: " for="email"/>
-                        <p:inputText id="email" value="#{registBean.email}" placeholder="¿Cuál es tu email?" required="true" label="Email" validatorMessage="Email Invalido." > 
-                         <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                        </p:inputText>
-                        <p:message for="email" />
-                        <!--b-->
-                     <p:commandButton value="Registrar" update="grid"  validateClient="true" style="margin-right:10px"/>
-    
+                        <p:outputLabel value="#{myBundle.CreateUsuarioLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{usuarioController.selected.email}" title="#{myBundle.CreateUsuarioTitle_email}" required="true" placeholder="#{myBundle.CreateUsuarioEmailPlaceHolder}" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_email}"  maxlength="25"/>
+                        <p:message for="email"/>
+                        
+                        <p:outputLabel value="#{myBundle.CreateUsuarioLabel_username}" for="username" />
+                        <p:inputText id="username" value="#{usuarioController.selected.username}" title="#{myBundle.CreateUsuarioTitle_username}" required="true" placeholder="#{myBundle.CreateUsuarioUserNamePlaceHolder}" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_username}"  maxlength="15"/>
+                        <p:message for="username" />
+                        
+                        <p:outputLabel value="#{myBundle.CreateUsuarioLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{usuarioController.selected.password}" title="#{myBundle.CreateUsuarioTitle_password}" required="true" placeholder="#{myBundle.CreateUsuarioPasswordPlaceHolder}" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_password}" maxlength="12"/>
+                        <p:message for="password"/>
+                                                 <!-- -->
+                    <p:commandButton actionListener="#{usuarioController.saveNew}" value="#{myBundle.Save}" oncomplete="handleSubmit(xhr,status,args,PF('UsuarioCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                  
                      
                         
                         

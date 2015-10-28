@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jpa.controller;
+package com.jpa.facade;
 
-import com.entities.Usuario;
+import com.entities.Rol;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Usuario
  */
 @Stateless
-public class UsuarioFacade extends AbstractFacade<Usuario> {
+public class RolFacade extends AbstractFacade<Rol> {
     @PersistenceContext(unitName = "EshopperPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         return em;
     }
 
-    public UsuarioFacade() {
-        super(Usuario.class);
+    public RolFacade() {
+        super(Rol.class);
     }
     
 }
