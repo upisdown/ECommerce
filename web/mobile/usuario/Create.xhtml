@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="UsuarioCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateUsuarioTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:UsuarioListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="UsuarioCreateForm">
+
+                <h:panelGroup id="display" rendered="#{usuarioController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUsuarioLabel_name}" for="name" />
+                            <p:inputText id="name" value="#{usuarioController.selected.name}" title="#{myBundle.CreateUsuarioTitle_name}" required="true" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_name}" size="18" maxlength="18"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUsuarioLabel_lastname}" for="lastname" />
+                            <p:inputText id="lastname" value="#{usuarioController.selected.lastname}" title="#{myBundle.CreateUsuarioTitle_lastname}" required="true" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_lastname}" size="25" maxlength="25"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUsuarioLabel_dob}" for="dob" />
+                            <p:calendar id="dob" pattern="MM/dd/yyyy" value="#{usuarioController.selected.dob}" title="#{myBundle.CreateUsuarioTitle_dob}" required="true" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_dob}" showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUsuarioLabel_email}" for="email" />
+                            <p:inputText id="email" value="#{usuarioController.selected.email}" title="#{myBundle.CreateUsuarioTitle_email}" required="true" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_email}" size="25" maxlength="25"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUsuarioLabel_username}" for="username" />
+                            <p:inputText id="username" value="#{usuarioController.selected.username}" title="#{myBundle.CreateUsuarioTitle_username}" required="true" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_username}" size="15" maxlength="15"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUsuarioLabel_password}" for="password" />
+                            <p:inputText id="password" value="#{usuarioController.selected.password}" title="#{myBundle.CreateUsuarioTitle_password}" required="true" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_password}" size="12" maxlength="12"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUsuarioLabel_idRol}" for="idRol" />
+                            <p:selectOneMenu id="idRol" value="#{usuarioController.selected.idRol}" required="true" requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_idRol}" converter="rolConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{rolController.items}"
+                                               var="idRolItem"
+                                               itemValue="#{idRolItem}"
+                                               itemLabel="#{idRolItem.descripcion.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{usuarioController.saveNew}" value="#{myBundle.Save}" update="display,:UsuarioListPage:UsuarioListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:UsuarioListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

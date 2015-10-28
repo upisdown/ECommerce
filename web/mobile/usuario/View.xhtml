@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="UsuarioViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewUsuarioTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:UsuarioListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="UsuarioViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{usuarioController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuarioLabel_id}"/>
+                            <h:outputText value="#{usuarioController.selected.id}" title="#{myBundle.ViewUsuarioTitle_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuarioLabel_name}"/>
+                            <h:outputText value="#{usuarioController.selected.name}" title="#{myBundle.ViewUsuarioTitle_name}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuarioLabel_lastname}"/>
+                            <h:outputText value="#{usuarioController.selected.lastname}" title="#{myBundle.ViewUsuarioTitle_lastname}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuarioLabel_dob}"/>
+                            <h:outputText value="#{usuarioController.selected.dob}" title="#{myBundle.ViewUsuarioTitle_dob}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuarioLabel_email}"/>
+                            <h:outputText value="#{usuarioController.selected.email}" title="#{myBundle.ViewUsuarioTitle_email}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuarioLabel_username}"/>
+                            <h:outputText value="#{usuarioController.selected.username}" title="#{myBundle.ViewUsuarioTitle_username}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuarioLabel_password}"/>
+                            <h:outputText value="#{usuarioController.selected.password}" title="#{myBundle.ViewUsuarioTitle_password}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUsuarioLabel_idRol}"/>
+                            <h:outputText value="#{usuarioController.selected.idRol.descripcion}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>
